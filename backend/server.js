@@ -88,11 +88,11 @@ async function connectDB() {
 // Connect to database
 connectDB();
 
-// For serverless (Vercel), always export the app
-// Vercel will detect and use it automatically
+// Export handler for Vercel serverless functions
+// Vercel automatically provides req and res to the exported function
 module.exports = app;
 
-// For traditional server mode (when not on Vercel and PORT is set)
+// For traditional server mode (local development)
 if (!process.env.VERCEL && process.env.PORT) {
   const port = process.env.PORT || 5000;
   app.listen(port, function() {
