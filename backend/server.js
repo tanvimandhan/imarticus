@@ -33,9 +33,10 @@ app.get('/api/test', function(req, res) {
 });
 
 // load routes (before DB connection for serverless compatibility)
-const userRoutes = require('./routes/users');
-const courseRoutes = require('./routes/courses');
-const documentRoutes = require('./routes/documents');
+const path = require('path');
+const userRoutes = require(path.join(__dirname, 'routes', 'users'));
+const courseRoutes = require(path.join(__dirname, 'routes', 'courses'));
+const documentRoutes = require(path.join(__dirname, 'routes', 'documents'));
 
 // use routes
 app.use('/api/users', userRoutes);

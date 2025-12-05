@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd backend && npm install",
-  "outputDirectory": "backend",
-  "installCommand": "cd backend && npm install",
   "builds": [
     {
       "src": "backend/server.js",
