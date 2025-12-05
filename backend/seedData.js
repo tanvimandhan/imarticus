@@ -18,7 +18,7 @@ const seedDatabase = async () => {
         title: 'Introduction to Machine Learning',
         description: 'Learn the fundamentals of Machine Learning and AI',
         instructor: 'Dr. John Smith',
-        thumbnail: 'https://via.placeholder.com/300x200?text=ML+Course',
+        thumbnail: '',
         totalLectures: 11,
         totalDuration: 25,
         sections: [
@@ -167,7 +167,7 @@ const seedDatabase = async () => {
         title: 'Full Stack Web Development',
         description: 'Master modern web development with MERN stack',
         instructor: 'Jane Doe',
-        thumbnail: 'https://via.placeholder.com/300x200?text=Web+Dev',
+        thumbnail: '',
         totalLectures: 15,
         totalDuration: 30,
         sections: [
@@ -215,7 +215,7 @@ const seedDatabase = async () => {
         title: 'Python Programming',
         description: 'Learn Python from scratch to advanced',
         instructor: 'Mike Johnson',
-        thumbnail: 'https://via.placeholder.com/300x200?text=Python',
+        thumbnail: '',
         totalLectures: 20,
         totalDuration: 40,
         sections: [
