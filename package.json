@@ -1,0 +1,11 @@
+{
+  "name": "imarticus-learning",
+  "version": "1.0.0",
+  "description": "Imarticus Learning Platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {}
+}
+
