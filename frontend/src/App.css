@@ -1,0 +1,208 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course-sections {
+  max-width: 100%;
+}
+
+.course-header {
+  border-left: 5px solid #0d6efd;
+}
+
+.lecture-item {
+  transition: background-color 0.2s ease;
+}
+
+.lecture-item:hover {
+  background-color: #f0f0f0 !important;
+}
+
+.quiz-item {
+  transition: background-color 0.2s ease;
+}
+
+.quiz-item:hover {
+  background-color: #e8f4ff !important;
+}
+
+.card-header {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.card-header:hover {
+  background-color: #e9ecef !important;
+}
+
+.nav-link:hover {
+  color: #0d6efd !important;
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.badge {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .sidebar-nav {
+    min-height: auto !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .program-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .program-nav {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .btn-responsive {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .border-md-left {
+    border-left: none !important;
+  }
+  
+  .border-md-top-none {
+    border-top: 1px solid #e9ecef !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .border-md-left {
+    border-left: 1px solid #e9ecef !important;
+  }
+  
+  .border-md-top-none {
+    border-top: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 1.75rem;
+  }
+  
+  .display-5 {
+    font-size: 1.5rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+  }
+  
+  .btn-group .btn {
+    border-radius: 0.375rem !important;
+    margin-bottom: 0.25rem;
+  }
+  
+  .btn-group .btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Responsive typography helpers */
+@media (min-width: 768px) {
+  .course-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .py-md-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .p-md-4 {
+    padding: 1.5rem !important;
+  }
+  
+  .p-md-3 {
+    padding: 1rem !important;
+  }
+  
+  .mb-md-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-md-5 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .mt-md-5 {
+    margin-top: 2rem !important;
+  }
+  
+  .px-md-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .justify-content-md-end {
+    justify-content: flex-start !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .justify-content-md-end {
+    justify-content: flex-end !important;
+  }
+}
