@@ -12,6 +12,20 @@ app.use(cors());
 // use json
 app.use(express.json());
 
+// root route
+app.get('/', function(req, res) {
+  res.json({ 
+    message: 'Imarticus Learning API Server',
+    status: 'running',
+    endpoints: {
+      test: '/api/test',
+      users: '/api/users',
+      courses: '/api/courses',
+      documents: '/api/documents'
+    }
+  });
+});
+
 // test route
 app.get('/api/test', function(req, res) {
   console.log('test was called');
@@ -33,6 +47,21 @@ mongoose.connect(process.env.MONGODB_URI, {
   app.use('/api/users', userRoutes);
   app.use('/api/courses', courseRoutes);
   app.use('/api/documents', documentRoutes);
+  
+  // 404 handler for undefined routes
+  app.use('*', function(req, res) {
+    res.status(404).json({ 
+      error: 'Route not found',
+      message: `Cannot ${req.method} ${req.originalUrl}`,
+      availableEndpoints: {
+        root: 'GET /',
+        test: 'GET /api/test',
+        users: '/api/users',
+        courses: '/api/courses',
+        documents: '/api/documents'
+      }
+    });
+  });
   
   // start server
   const port = process.env.PORT || 5000;
