@@ -32,43 +32,69 @@ app.get('/api/test', function(req, res) {
   res.json({ message: 'Backend is working' });
 });
 
-// connect to database
-mongoose.connect(process.env.MONGODB_URI, {
-  serverSelectionTimeoutMS: 5000,
-}).then(function() {
-  console.log('connected to mongo');
-  
-  // load routes
-  const userRoutes = require('./routes/users');
-  const courseRoutes = require('./routes/courses');
-  const documentRoutes = require('./routes/documents');
-  
-  // use routes
-  app.use('/api/users', userRoutes);
-  app.use('/api/courses', courseRoutes);
-  app.use('/api/documents', documentRoutes);
-  
-  // 404 handler for undefined routes
-  app.use('*', function(req, res) {
-    res.status(404).json({ 
-      error: 'Route not found',
-      message: `Cannot ${req.method} ${req.originalUrl}`,
-      availableEndpoints: {
-        root: 'GET /',
-        test: 'GET /api/test',
-        users: '/api/users',
-        courses: '/api/courses',
-        documents: '/api/documents'
-      }
-    });
+// load routes (before DB connection for serverless compatibility)
+const userRoutes = require('./routes/users');
+const courseRoutes = require('./routes/courses');
+const documentRoutes = require('./routes/documents');
+
+// use routes
+app.use('/api/users', userRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/documents', documentRoutes);
+
+// 404 handler for undefined routes
+app.use(function(req, res) {
+  res.status(404).json({ 
+    error: 'Route not found',
+    message: `Cannot ${req.method} ${req.originalUrl}`,
+    availableEndpoints: {
+      root: 'GET /',
+      test: 'GET /api/test',
+      users: '/api/users',
+      courses: '/api/courses',
+      documents: '/api/documents'
+    }
   });
+});
+
+// connect to database (with better error handling for serverless)
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected) {
+    console.log('Using existing database connection');
+    return;
+  }
   
-  // start server
+  if (!process.env.MONGODB_URI) {
+    console.error('MONGODB_URI is not defined in environment variables');
+    return;
+  }
+  
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    isConnected = true;
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message);
+    // Don't exit in serverless - let the function handle the error
+    isConnected = false;
+  }
+}
+
+// Connect to database
+connectDB();
+
+// For serverless (Vercel), always export the app
+// Vercel will detect and use it automatically
+module.exports = app;
+
+// For traditional server mode (when not on Vercel and PORT is set)
+if (!process.env.VERCEL && process.env.PORT) {
   const port = process.env.PORT || 5000;
   app.listen(port, function() {
     console.log('server is running on port ' + port);
   });
-}).catch(function(err) {
-  console.log('error connecting to mongo: ' + err.message);
-  process.exit(1);
-});
+}
