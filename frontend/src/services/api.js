@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // base url for api
-const API_URL = 'http://localhost:5000/api';
+// Uses environment variable for deployment flexibility
+// Defaults to deployed backend URL for production
+const API_URL = process.env.REACT_APP_API_URL || 'https://imarticus-3.onrender.com/api';
 
 // create axios instance
 const api = axios.create({
