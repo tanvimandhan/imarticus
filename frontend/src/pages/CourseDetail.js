@@ -17,6 +17,7 @@ function CourseDetail() {
   // check if user is logged in
   if (!user) {
     navigate('/login');
+    
     return null;
   }
 
