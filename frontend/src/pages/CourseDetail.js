@@ -24,6 +24,7 @@ function CourseDetail() {
   // handle upload success
   function handleUploadSuccess() {
     console.log('upload success, refreshing documents');
+    
     setRefreshDocs(refreshDocs + 1);
   }
 
